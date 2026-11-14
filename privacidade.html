@@ -22,10 +22,15 @@
 
   <h2>2. Dados da sua conta Google / YouTube</h2>
   <p>Se você clicar em “Conectar YouTube”, o Google pede sua autorização para o HELLCUTLV acessar a
-    <strong>YouTube Data API</strong> com uma única permissão: enviar vídeos (<code>youtube.upload</code>). Com
-    isso o programa envia para o <strong>seu</strong> canal os cortes que você escolheu, com o título, a descrição e
-    a data de publicação que você definiu. Ele não lê, altera nem apaga outros vídeos, comentários ou dados do
-    canal.</p>
+    <strong>YouTube Data API</strong> com duas permissões:</p>
+  <ul>
+    <li><strong>Enviar vídeos</strong> (<code>youtube.upload</code>): o programa envia para o <strong>seu</strong>
+      canal os cortes que você escolheu, com o título, a descrição e a data de publicação que você definiu.</li>
+    <li><strong>Ver dados da conta do YouTube</strong> (<code>youtube.readonly</code>): usada só para ler o
+      <strong>nome e a foto do canal</strong> conectado, para você escolher em qual canal cada corte vai quando conecta
+      mais de um.</li>
+  </ul>
+  <p>O programa não altera nem apaga vídeos, comentários ou dados do canal, e não lê seus outros vídeos.</p>
   <p>O token de acesso fornecido pelo Google é guardado <strong>criptografado</strong> no seu computador e usado
     apenas para essas ações. Ele não é vendido, compartilhado nem usado para publicidade, e nenhum dado obtido das
     APIs do Google é transferido a terceiros.</p>
