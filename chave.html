@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recuperar minha chave — HELLCUTLV</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="estilo.css">
+<style>
+  .card { background: #15121c; border: 1px solid #2a2533; border-radius: 16px; padding: 22px; max-width: 520px; }
+  .card label { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card input { width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 10px; border: 1px solid #3a3446;
+    background: #0d0b12; color: #f2f2f5; font-size: 16px; }
+  .card button { margin-top: 18px; width: 100%; padding: 14px; border: 0; border-radius: 12px; font-weight: 700;
+    font-size: 16px; color: #fff; cursor: pointer; background: linear-gradient(90deg, #ff2d55, #ff9a3c); }
+  .card button:disabled { opacity: .6; cursor: wait; }
+  #chave { display: none; margin-top: 18px; background: #1b1822; border: 1px solid #ff8a3d; border-radius: 12px;
+    padding: 14px; font-family: Consolas, monospace; font-size: 13px; word-break: break-all; }
+  #msg { margin-top: 14px; min-height: 1.2em; }
+  .erro { color: #ff6b6b; } .ok { color: #7ee2a8; }
+</style>
+</head>
+<body>
+<main>
+  <p><a href="index.html">← HELLCUTLV</a></p>
+  <h1>Recuperar minha chave</h1>
+  <p>Perdeu o e-mail com a chave? Digite o <strong>e-mail usado na compra</strong> e o <strong>número do pedido</strong>
+    (está no e-mail de confirmação da Kiwify).</p>
+  <form class="card" id="form">
+    <label for="email">E-mail da compra</label>
+    <input id="email" type="email" required autocomplete="email" placeholder="voce@email.com">
+    <label for="pedido">Número do pedido</label>
+    <input id="pedido" type="text" required minlength="6" placeholder="ex.: 9b1c2d3e-…">
+    <button id="btn" type="submit">Mostrar minha chave</button>
+    <div id="msg"></div>
+    <div id="chave"></div>
+  </form>
+  <p class="small">Nunca pedimos senha nem dados de cartão. Dúvidas: responda o e-mail da compra.</p>
+</main>
+<script>
+  // O pedido vai para o servidor do HELLCUTLV (que guarda as chaves). Só devolve a chave com e-mail + pedido certos.
+  const API = "https://desktop-utfsmvk.tail7fdc34.ts.net/api/public/minha-chave";
+  const f = document.getElementById("form"), msg = document.getElementById("msg"),
+        box = document.getElementById("chave"), btn = document.getElementById("btn");
+  f.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    btn.disabled = true; msg.textContent = "Procurando…"; msg.className = ""; box.style.display = "none";
+    try {
+      const r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: document.getElementById("email").value.trim(),
+                               pedido: document.getElementById("pedido").value.trim() }) });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(d.detail || "Não deu certo agora. Tente de novo em alguns minutos.");
+      msg.textContent = "Oi, " + d.nome.split(" ")[0] + "! Esta é a sua chave (copie e cole no programa):";
+      msg.className = "ok"; box.textContent = d.chave; box.style.display = "block";
+    } catch (err) {
+      msg.textContent = err.message === "Failed to fetch"
+        ? "O servidor está em manutenção agora. Tente de novo em alguns minutos." : err.message;
+      msg.className = "erro";
+    } finally { btn.disabled = false; }
+  });
+</script>
+</body>
+</html>
