@@ -30,7 +30,7 @@
 
   <h2>2. Dados da sua conta Google / YouTube</h2>
   <p>Se você clicar em “Conectar YouTube”, o Google pede sua autorização para o HELLCUTLV acessar a
-    <strong>YouTube Data API</strong> e a <strong>YouTube Analytics API</strong> com três permissões:</p>
+    <strong>YouTube Data API</strong> e a <strong>YouTube Analytics API</strong> com as permissões abaixo:</p>
   <ul>
     <li><strong>Enviar vídeos</strong> (<code>youtube.upload</code>): o programa envia para o <strong>seu</strong>
       canal os cortes que você escolheu, com o título, a descrição e a data de publicação que você definiu.</li>
@@ -40,8 +40,15 @@
     <li><strong>Ver relatórios do YouTube Analytics</strong> (<code>yt-analytics.readonly</code>): usada só para ler a
       <strong>retenção</strong> (engaged views, % médio assistido e duração média) dos cortes que o programa postou,
       mostrada no painel de Resultados para você saber o que funciona no seu canal.</li>
+    <li><strong>Gerenciar seus vídeos do YouTube</strong> (<code>youtube.force-ssl</code>) — só na versão usada pelo
+      dono do HELLCUTLV no próprio site, não no programa vendido: usada <strong>apenas</strong> pela função “Lives
+      automáticas”, que o próprio dono do canal liga, para mudar o <strong>título, a descrição, as tags, a categoria, o
+      idioma, a opção “feito para crianças” e a thumbnail</strong> de uma live do <strong>próprio canal</strong> quando ela
+      começa, e para ler o número de espectadores dessa live.</li>
   </ul>
-  <p>O programa não altera nem apaga vídeos, comentários ou dados do canal. Os números lidos ficam só no seu computador.</p>
+  <p>O programa não apaga vídeos e não mexe em comentários. Além do envio dos cortes, a única alteração feita no canal é
+    a da função “Lives automáticas” descrita acima, e só quando o dono do canal cria esse modelo. Os números lidos ficam
+    só no computador onde o programa roda.</p>
   <p>O token de acesso fornecido pelo Google é guardado <strong>criptografado</strong> no seu computador e usado
     apenas para essas ações. Ele não é vendido, compartilhado nem usado para publicidade, e nenhum dado obtido das
     APIs do Google é transferido a terceiros.</p>
