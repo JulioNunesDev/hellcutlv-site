@@ -2,308 +2,330 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HELLCUTLV — cortes de lives no automático</title>
-<meta name="description" content="Cole o link da live e o HELLCUTLV acha os melhores momentos, edita em vertical com legenda animada, narra e posta. Pagamento único, acesso vitalício.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HELLCUTLV — o robô que corta suas lives</title>
+<meta name="description" content="Cole o link da live e o HELLCUTLV acha os melhores momentos, edita em vertical com legenda animada, narra e posta. Vitalício por R$ 47 ou assinatura pelo celular.">
+<meta name="theme-color" content="#0a0a0a">
 <meta property="og:title" content="HELLCUTLV — o robô que corta suas lives">
-<meta property="og:description" content="Cortes prontos para Shorts, TikTok e Reels. Pagamento único, acesso vitalício.">
+<meta property="og:description" content="Cortes prontos para Shorts, TikTok e Reels. Vitalício R$ 47 · Pro e pelo celular R$ 29,90/mês.">
 <meta property="og:image" content="https://julionunesdev.github.io/hellcutlv-site/img/capa.png">
 <link rel="icon" href="img/icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #09090d; --surface: #121219; --surface-2: #191922; --line: #262632; --text: #f4f4f7; --muted: #9d9db0;
-    --hell: #ff2d3f; --hell-2: #ff7a2d; --ok: #2bd67b; --grad: linear-gradient(100deg, var(--hell), var(--hell-2));
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 Inter, system-ui, "Segoe UI", sans-serif; }
-  a { color: var(--hell-2); }
-  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 16px; }
-  header.top { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
-  header.top img { height: 36px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 28px; border-radius: 14px;
-    background: var(--grad); color: #fff; font-weight: 800; font-size: 1.05rem; text-decoration: none; border: 0; cursor: pointer;
-    box-shadow: 0 10px 30px rgba(255, 45, 63, .35); transition: transform .15s, box-shadow .2s; }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(255, 45, 63, .45); }
-  .btn.small { padding: 10px 18px; font-size: .95rem; box-shadow: none; }
-  .btn.off { background: var(--surface-2); color: var(--muted); box-shadow: none; border: 1px solid var(--line); cursor: default; }
-  h1, h2 { font-family: Anton, Impact, sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .5px; line-height: 1.05; }
-  h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); margin: 0 0 16px; }
-  h1 em, h2 em { font-style: normal; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 12px; }
-  .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: center; padding: 40px 0 64px; }
-  .hero p.lead { font-size: 1.15rem; color: #d6d6e0; margin: 0 0 24px; max-width: 540px; }
-  .hero img { width: 100%; border-radius: 22px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0,0,0,.5); }
-  .price { display: flex; align-items: baseline; gap: 12px; margin: 0 0 18px; }
-  .price b { font-family: Anton, sans-serif; font-size: 3rem; font-weight: 400; white-space: nowrap; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-  .chip { padding: 6px 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
-  section { padding: 56px 0; border-top: 1px solid var(--line); }
-  .sub { color: var(--muted); max-width: 680px; margin: 0 0 28px; }
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .step, .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
-  .step span { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--grad); font-weight: 800; margin-bottom: 12px; }
-  .step b, .card b { display: block; font-size: 1.05rem; margin-bottom: 6px; }
-  .step p, .card p { margin: 0; color: var(--muted); font-size: .95rem; }
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .card .ico { font-size: 1.8rem; display: block; margin-bottom: 8px; }
-  .tablewrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-  th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--line); }
-  th { color: var(--muted); font-weight: 600; font-size: .9rem; }
-  td.us { color: var(--ok); font-weight: 800; }
-  .offer { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; background: linear-gradient(160deg, rgba(255,45,63,.12), var(--surface));
-    border: 1px solid rgba(255,122,45,.4); border-radius: 24px; padding: 32px; }
-  .offer ul { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 10px; }
-  .offer li::before { content: "✓"; color: var(--ok); font-weight: 800; margin-right: 10px; }
-  .guarantee { display: flex; gap: 16px; align-items: center; margin-top: 18px; color: var(--muted); }
-  .guarantee b { color: var(--text); }
-  details { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin-bottom: 10px; }
-  summary { cursor: pointer; font-weight: 600; }
-  details p { color: var(--muted); margin: 10px 0 0; }
-  .note { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; color: var(--muted); }
-  .note h3 { color: var(--text); margin: 0 0 8px; }
-  footer { padding: 32px 0 48px; color: var(--muted); border-top: 1px solid var(--line); font-size: .92rem; }
-  .soon { color: var(--muted); font-size: .9rem; margin-top: 10px; }
-  /* "Tudo que vem dentro": grupos com lista de funcionalidades (ícone · nome + selo · explicação) */
-  .kicker { color: var(--hell-2); font-weight: 800; font-size: .8rem; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 8px; }
-  .groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .group { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
-  .group h3 { margin: 0 0 14px; font-size: 1.05rem; display: flex; align-items: center; gap: 10px; }
-  .group h3 i { font-style: normal; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--grad); }
-  .feat { display: grid; grid-template-columns: 30px 1fr; gap: 2px 10px; padding: 10px 0; border-top: 1px solid var(--line); }
-  .feat:first-of-type { border-top: 0; }
-  .feat .fi { grid-row: span 2; font-size: 1.3rem; line-height: 1.3; }
-  .feat b { font-size: .98rem; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-  .feat p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.45; }
-  .tag { font-size: .68rem; font-weight: 800; letter-spacing: .8px; padding: 3px 8px; border-radius: 999px; text-transform: uppercase;
-    background: rgba(255,122,45,.14); color: var(--hell-2); border: 1px solid rgba(255,122,45,.35); }
-  .tag.new { background: rgba(43,214,123,.12); color: var(--ok); border-color: rgba(43,214,123,.35); }
-  /* "Veja por dentro": cartões com a tela de verdade do programa numa moldura com o degradê da marca */
-  .previews { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .pv { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 14px; display: grid; gap: 14px; }
-  .pv.wide { grid-column: 1 / -1; }
-  .pv-frame { border-radius: 18px; padding: 18px; overflow: hidden;
-    background: radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,.18), transparent 55%), linear-gradient(135deg, var(--hell), var(--hell-2)); }
-  .pv-frame img { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 18px 50px rgba(0,0,0,.45);
-    border: 1px solid rgba(0,0,0,.35); }
-  .pv-text { display: grid; grid-template-columns: 44px 1fr; gap: 4px 14px; align-items: center; padding: 0 6px 6px; }
-  .pv-text i { grid-row: span 2; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--grad);
-    font-style: normal; font-size: 1.3rem; }
-  .pv-text b { font-size: 1.1rem; }
-  .pv-text p { margin: 0; color: var(--muted); font-size: .95rem; }
-  /* WhatsApp: botão do grupo */
-  .btn.wa { background: #25d366; box-shadow: 0 10px 30px rgba(37,211,102,.25); color: #06200f; }
-  .btn.wa:hover { box-shadow: 0 14px 36px rgba(37,211,102,.4); }
-  .wa-float { position: fixed; right: 18px; bottom: 18px; z-index: 50; display: flex; align-items: center; gap: 10px; padding: 12px 18px 12px 14px;
-    border-radius: 999px; background: #25d366; color: #06200f; font-weight: 800; text-decoration: none; box-shadow: 0 12px 30px rgba(0,0,0,.45); }
-  .wa-float svg, .btn.wa svg { width: 22px; height: 22px; flex: none; }
-  .community { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; background: linear-gradient(160deg, rgba(37,211,102,.10), var(--surface));
-    border: 1px solid rgba(37,211,102,.35); border-radius: 22px; padding: 26px; }
-  .community p { margin: 6px 0 0; color: var(--muted); }
-  .top-actions { display: flex; gap: 10px; align-items: center; }
-  @media (max-width: 820px) {
-    .hero, .offer { grid-template-columns: 1fr; }
-    .steps, .grid, .groups, .community, .previews { grid-template-columns: 1fr; }
-    .pv-frame { padding: 10px; }
-    .top-actions .wa-top { display: none; }
-    .wa-float span { display: none; }
-    .wa-float { padding: 14px; }
-    .hero { padding-top: 16px; }
-    .offer { padding: 22px; }
-  }
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <img src="img/logo.png" alt="HELLCUTLV">
-    <div class="top-actions">
-      <a class="btn small wa wa-top" href="https://chat.whatsapp.com/LjI08qROCutLAUC9nCFdsI" target="_blank" rel="noopener">Grupo no WhatsApp</a>
-      <a class="btn small" href="#oferta">Quero o meu</a>
-    </div>
-  </header>
 
-  <div class="hero">
-    <div>
-      <h1>O robô que <em>corta suas lives</em> por você</h1>
-      <p class="lead">Cole o link da live. O HELLCUTLV acha os melhores momentos, edita em vertical com legenda animada,
-        narra e posta. Você só escolhe o que vai pro ar.</p>
-      <div class="price"><b>R$ 47</b><span>pagamento único · sem mensalidade</span></div>
-      <a class="btn" href="#oferta">Quero cortar minhas lives</a>
-      <div class="chips">
-        <span class="chip">🎮 YouTube · Twitch · Kick · TikTok</span>
-        <span class="chip">🔑 Acesso vitalício</span>
-        <span class="chip">✅ Garantia de 7 dias</span>
-      </div>
-    </div>
-    <img src="img/capa.png" alt="HELLCUTLV — o robô que corta, edita, narra e posta as lives">
-  </div>
+<!-- mascote (o robô da marca) — o mesmo desenho é usado no hero e no balão que acompanha a página -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="hcg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff2d55"/><stop offset="1" stop-color="#ff9a3c"/></linearGradient>
+    <symbol id="robo" viewBox="140 90 744 720">
+      <g class="r-ant"><rect x="497" y="150" width="30" height="110" rx="15" fill="url(#hcg)"/><circle class="r-bulb" cx="512" cy="144" r="44" fill="url(#hcg)"/></g>
+      <rect x="150" y="430" width="70" height="170" rx="26" fill="url(#hcg)"/>
+      <rect x="804" y="430" width="70" height="170" rx="26" fill="url(#hcg)"/>
+      <rect x="200" y="250" width="624" height="540" rx="130" fill="url(#hcg)"/>
+      <rect x="278" y="364" width="468" height="250" rx="70" fill="#0d0b12"/>
+      <g class="r-eyes">
+        <rect x="356" y="424" width="100" height="130" rx="20" fill="#fff"/>
+        <rect x="568" y="424" width="100" height="130" rx="20" fill="#fff"/>
+        <g class="r-pupils"><rect x="374" y="442" width="32" height="32" rx="6" fill="#0d0b12"/><rect x="586" y="442" width="32" height="32" rx="6" fill="#0d0b12"/></g>
+      </g>
+      <rect class="r-mouth" x="452" y="680" width="120" height="22" rx="11" fill="#0d0b12"/>
+    </symbol>
+  </defs>
+</svg>
 
-  <section id="como">
-    <h2>Como <em>funciona</em></h2>
-    <p class="sub">Do link da live ao corte postado, sem abrir editor de vídeo.</p>
-    <div class="steps">
-      <div class="step"><span>1</span><b>Cole o link</b><p>De uma live (até ao vivo, enquanto acontece) ou de um vídeo longo.</p></div>
-      <div class="step"><span>2</span><b>O robô trabalha</b><p>Baixa, transcreve, acha os picos (grito, risada, chat explodindo) e edita cada corte.</p></div>
-      <div class="step"><span>3</span><b>Revise e poste</b><p>Cortes 9:16 com título, legenda e hashtags. Posta sozinho no YouTube; TikTok e Instagram em 2 cliques.</p></div>
-    </div>
-  </section>
+<header class="top" id="topo">
+  <a class="brand" href="#inicio" aria-label="HELLCUTLV — início"><img src="img/logo.png" alt="HELLCUTLV" height="36"></a>
+  <nav class="menu" aria-label="Seções">
+    <a href="#como">Como funciona</a><a href="#por-dentro">Por dentro</a><a href="#funcoes">Funções</a><a href="#planos">Planos</a><a href="#duvidas">Dúvidas</a>
+  </nav>
+  <a class="btn sm" href="#planos">Ver planos</a>
+</header>
 
-  <section id="por-dentro">
-    <p class="kicker">Veja na prática</p>
-    <h2>O HELLCUTLV <em>por dentro</em></h2>
-    <p class="sub">Telas de verdade do programa (com exemplos no lugar dos vídeos e nomes): é isso que você vai usar.</p>
-    <div class="previews">
-      <article class="pv wide">
-        <div class="pv-frame"><img src="img/previa/ao-vivo.jpg" width="1530" height="763" alt="Tela Ao vivo: prévia da live e o Editor-chefe AI com as etapas" loading="lazy"></div>
-        <div class="pv-text"><i>📡</i><b>Corta a live enquanto ela acontece</b>
-          <p>Prévia da live no ar e o Editor-chefe AI mostrando cada etapa: baixa, transcreve, escolhe, edita, confere e solta o corte pronto para postar.</p></div>
-      </article>
-      <article class="pv">
-        <div class="pv-frame"><img src="img/previa/editor-ai.jpg" width="767" height="728" alt="Editor AI revisando um corte com notas e sugestões" loading="lazy"></div>
-        <div class="pv-text"><i>🧠</i><b>Editor AI que revisa como um profissional</b>
-          <p>Nota do gancho, ritmo e final, chance de viralizar e o que um editor faria para o corte render mais.</p></div>
-      </article>
-      <article class="pv">
-        <div class="pv-frame"><img src="img/previa/inicio.jpg" width="1590" height="1314" alt="Tela Início com o que está rodando e os atalhos" loading="lazy"></div>
-        <div class="pv-text"><i>🏠</i><b>Tudo num lugar só</b>
-          <p>O que está rodando agora, o que espera a sua aprovação e atalhos para cada parte do programa.</p></div>
-      </article>
-      <article class="pv wide">
-        <div class="pv-frame"><img src="img/previa/cacador.jpg" width="1530" height="732" alt="Caçador: radar com os vídeos em alta achados e o painel com o que está sendo cortado" loading="lazy"></div>
-        <div class="pv-text"><i>🛰️</i><b>Caçador: um radar de virais</b>
-          <p>Diga o assunto (ex.: GTA 6) e ele procura sozinho os vídeos e lives que estão bombando no YouTube e na Twitch, dá nota, corta e posta.</p></div>
-      </article>
-      <article class="pv wide">
-        <div class="pv-frame"><img src="img/previa/formatos.jpg" width="1544" height="924" alt="Formatos dos virais: Top 5 da live, moldura de post e compilação de streamers" loading="lazy"></div>
-        <div class="pv-text"><i>🔥</i><b>Os formatos que viralizam, em 1 clique</b>
-          <p>Top 5 da live em contagem regressiva, moldura de post estilo “print” e compilação de vários streamers respondendo a mesma pergunta.</p></div>
-      </article>
-      <article class="pv wide">
-        <div class="pv-frame"><img src="img/previa/analisador.jpg" width="1530" height="594" alt="Analisador de virais: receita ativa com os números e o painel para analisar" loading="lazy"></div>
-        <div class="pv-text"><i>🧪</i><b>Copia a receita de quem viraliza</b>
-          <p>Estuda os Shorts mais vistos do seu nicho (ou de um editor que você admira) e a IA passa a cortar com o mesmo ritmo e os mesmos ganchos.</p></div>
-      </article>
-      <article class="pv">
-        <div class="pv-frame"><img src="img/previa/calendario.jpg" width="1461" height="984" alt="Calendário de postagens da semana" loading="lazy"></div>
-        <div class="pv-text"><i>📅</i><b>Agenda e posta sozinho</b>
-          <p>Calendário com tudo que vai sair no YouTube, Instagram e TikTok. Arraste para mudar o dia e a hora.</p></div>
-      </article>
-      <article class="pv">
-        <div class="pv-frame"><img src="img/previa/ajuda.jpg" width="1530" height="1078" alt="Página de Ajuda com o passo a passo de cada ferramenta" loading="lazy"></div>
-        <div class="pv-text"><i>🧭</i><b>Passo a passo dentro do programa</b>
-          <p>Cada ferramenta com o que faz, onde fica e como usar — sem precisar procurar vídeo.</p></div>
-      </article>
-    </div>
-  </section>
-
-  <section id="recursos">
-    <p class="kicker">O que vem junto</p>
-    <h2>Tudo que você recebe <em>dentro do HELLCUTLV</em></h2>
-    <p class="sub">Nada de ferramenta solta: são mais de 30 recursos que trabalham juntos para levar a live bruta até
-      dezenas de cortes prontos, agendados e postados nas suas redes — sem abrir editor de vídeo.</p>
-    <div class="groups">
-      <div class="group">
-        <h3><i>✂️</i>Acha os melhores momentos</h3>
-        <div class="feat"><span class="fi">🔗</span><b>Cola o link e pronto <span class="tag">Sem limite de cortes</span></b><p>YouTube, Twitch, Kick, TikTok. Roda no seu PC: quantos cortes quiser, sem pagar por corte.</p></div>
-        <div class="feat"><span class="fi">🎯</span><b>Nota viral de 0 a 99</b><p>A IA avalia gancho, ritmo e valor de cada momento — e mostra o porquê.</p></div>
-        <div class="feat"><span class="fi">🔴</span><b>Corta a live AO VIVO <span class="tag">Exclusivo</span></b><p>Acompanha a live enquanto ela acontece e solta cortes de tempos em tempos.</p></div>
-        <div class="feat"><span class="fi">👀</span><b>Vigia o canal por você</b><p>O canal entrou ao vivo? O robô começa a cortar sozinho, toda vez.</p></div>
-        <div class="feat"><span class="fi">🔎</span><b>Caçador de virais</b><p>Procura vídeos e lives em alta do seu nicho e já manda cortar.</p></div>
-        <div class="feat"><span class="fi">📈</span><b>Escuta o público da live</b><p>Pico do chat, risadas, “!clip” e clipes da comunidade entram na escolha.</p></div>
+<main id="inicio">
+  <!-- ============================================================ HERO -->
+  <section class="hero" data-mascote="Oi! Eu sou o robô do HELLCUTLV. Cola o link da live que eu corto pra você ✂️">
+    <div class="hero-txt">
+      <p class="eyebrow"><span class="dot"></span> Versão <span data-versao>1.0.8</span> · atualiza toda sexta</p>
+      <h1 class="mega">
+        <span class="ln"><span>Cola o link.</span></span>
+        <span class="ln"><span><em>O robô corta.</em></span></span>
+        <span class="ln"><span>Você posta.</span></span>
+      </h1>
+      <p class="lead">O HELLCUTLV assiste a live por você, acha os melhores momentos, edita em vertical com legenda animada,
+        narra com a sua voz e agenda nas suas redes. Sem abrir editor de vídeo.</p>
+      <div class="cta-row">
+        <a class="btn" href="#planos">Escolher meu plano</a>
+        <a class="btn ghost" href="#como"><span class="play" aria-hidden="true"></span> Ver ele cortando</a>
       </div>
-      <div class="group">
-        <h3><i>🎬</i>Edição de editor profissional</h3>
-        <div class="feat"><span class="fi">📱</span><b>Vertical inteligente</b><p>Rosto e jogo no lugar certo, mesmo quando a live troca de layout no meio.</p></div>
-        <div class="feat"><span class="fi">🔤</span><b>Legenda animada de Reels viral</b><p>Palavra-chave em destaque, emojis, cores prontas e modelos de estilo seus.</p></div>
-        <div class="feat"><span class="fi">🎙️</span><b>Narração na abertura <span class="tag">Sua voz</span></b><p>Gancho falado no estilo dos canais de cortes, com voz de IA ou a sua voz clonada.</p></div>
-        <div class="feat"><span class="fi">💥</span><b>Zoom, transições e sons na batida</b><p>Tira pausas e “ééé”, acerta o ritmo e põe efeitos sonoros livres de direitos.</p></div>
-        <div class="feat"><span class="fi">🖼️</span><b>Capas automáticas</b><p>Thumbnail com o melhor quadro e texto grande, em pé e deitada.</p></div>
-        <div class="feat"><span class="fi">🌎</span><b>Legenda traduzida</b><p>Live em inglês? A legenda sai em português.</p></div>
-      </div>
-      <div class="group">
-        <h3><i>🧠</i>Editor AI que revisa e aprende</h3>
-        <div class="feat"><span class="fi">🧑‍⚖️</span><b>Editor-chefe com IA <span class="tag new">Novo</span></b><p>Assiste o corte pronto e segura tela parada, menu do jogo, gancho fraco e fala cortada.</p></div>
-        <div class="feat"><span class="fi">🔥</span><b>Chance de viralizar <span class="tag new">Novo</span></b><p>Nota de cada parte (gancho, ritmo, final) comparada com o resultado real dos seus posts.</p></div>
-        <div class="feat"><span class="fi">👍</span><b>Aprende com você</b><p>Você libera ou recusa com o motivo, e os próximos cortes já vêm do seu jeito.</p></div>
-        <div class="feat"><span class="fi">📊</span><b>Lê a retenção</b><p>Vê onde o público saiu do vídeo e ajusta a edição dos próximos.</p></div>
-        <div class="feat"><span class="fi">✏️</span><b>Editor do corte</b><p>Mude o tempo, o texto, o enquadramento e o visual sem timeline complicada.</p></div>
-      </div>
-      <div class="group">
-        <h3><i>🚀</i>Posta e agenda para você</h3>
-        <div class="feat"><span class="fi">▶️</span><b>YouTube no automático</b><p>Posta e agenda Shorts sozinho, em vários canais, com título, descrição e capa.</p></div>
-        <div class="feat"><span class="fi">📲</span><b>TikTok e Instagram em 2 toques</b><p>Vídeo e legenda prontos no celular ou no PC na hora marcada.</p></div>
-        <div class="feat"><span class="fi">📅</span><b>Calendário e postar em massa</b><p>Arraste para mudar o dia e a hora; solte 20 cortes espalhados nos melhores horários.</p></div>
-        <div class="feat"><span class="fi">📝</span><b>Título, legenda e hashtags prontos</b><p>Texto certo para cada rede, com o crédito do streamer.</p></div>
-        <div class="feat"><span class="fi">🔔</span><b>Avisos no celular</b><p>Corte pronto, post publicado, resumo do dia — direto no seu telefone.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="comparar">
-    <h2>Mensalidade? <em>Aqui não.</em></h2>
-    <p class="sub">As ferramentas gringas de cortes cobram todo mês, em dólar. O HELLCUTLV você paga uma vez.</p>
-    <div class="tablewrap">
-    <table>
-      <tr><th></th><th>Ferramentas gringas</th><th>HELLCUTLV</th></tr>
-      <tr><td>Preço</td><td>US$ 15 a 30 por mês</td><td class="us">R$ 47 uma vez</td></tr>
-      <tr><td>Corta live ao vivo</td><td>Raro</td><td class="us">Sim</td></tr>
-      <tr><td>Narração com a sua voz</td><td>Não</td><td class="us">Sim</td></tr>
-      <tr><td>Tudo em português</td><td>Parcial</td><td class="us">Sim</td></tr>
-      <tr><td>Atualizações</td><td>Enquanto pagar</td><td class="us">Toda semana, incluídas</td></tr>
-    </table>
-    </div>
-  </section>
-
-  <section id="oferta">
-    <div class="offer">
-      <div>
-        <h2>Acesso <em>vitalício</em></h2>
-        <div class="price"><b>R$ 47</b><span>pagamento único</span></div>
-        <a class="btn" id="buy" href="https://pay.kiwify.com.br/PAgYqNR">Comprar agora</a>
-        <div class="soon" id="soon" hidden>As vendas abrem em breve.</div>
-        <div class="guarantee"><span style="font-size:2rem">🛡️</span><span><b>Garantia de 7 dias.</b> Não gostou? Pede o reembolso pela Kiwify e pronto.</span></div>
-      </div>
-      <ul>
-        <li>Programa para Windows com instalador</li>
-        <li>Chave de acesso vitalícia (chega por e-mail na hora)</li>
-        <li>Atualizações toda semana, sem pagar de novo</li>
-        <li>Assistente que mostra como pegar cada chave grátis (Groq, ElevenLabs, Freesound)</li>
-        <li>Pacote de efeitos sonoros e trilhas livres de direitos</li>
-        <li>Área de membros com o passo a passo</li>
-        <li>Grupo no WhatsApp com quem também usa</li>
+      <ul class="chips">
+        <li>🎮 YouTube · Twitch · Kick · TikTok</li><li>🔴 Corta até ao vivo</li><li>🛡️ Garantia de 7 dias</li>
       </ul>
     </div>
-  </section>
 
-  <section id="comunidade">
-    <div class="community">
-      <div>
-        <p class="kicker" style="color:#25d366">Comunidade</p>
-        <h2 style="margin:0">Entra no <em>grupo do WhatsApp</em></h2>
-        <p>Novidades do HELLCUTLV, dicas de cortes que viralizam e tira-dúvidas com quem já usa. Grátis, pode entrar antes de comprar.</p>
+    <div class="hero-stage" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="phone3d" data-tilt>
+        <div class="phone">
+          <div class="clip">
+            <div class="clip-scene"><div class="sun"></div><div class="city"></div></div>
+            <div class="clip-title">A FUGA MAIS INSANA DA LIVE</div>
+            <div class="clip-cap"><span>ELE</span> <b>PULOU</b> <span>DO</span> <b class="y">PRÉDIO</b></div>
+            <div class="clip-score">🎯 87</div>
+            <div class="clip-bar"><i></i></div>
+          </div>
+        </div>
+        <div class="float f1">✂️ Jump cut</div>
+        <div class="float f2">🎙️ Narração</div>
+        <div class="float f3">🔥 Chance 78%</div>
+        <div class="float f4">📅 Sai às 18:00</div>
       </div>
-      <a class="btn wa" href="https://chat.whatsapp.com/LjI08qROCutLAUC9nCFdsI" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2.1.7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
-        Entrar no grupo
-      </a>
+      <svg class="hero-robo" viewBox="140 90 744 720"><use href="#robo"/></svg>
     </div>
   </section>
 
-  <section id="duvidas">
-    <h2>Dúvidas</h2>
-    <details><summary>Funciona em Mac ou no celular?</summary><p>Só no Windows (10 ou 11). O celular serve para aprovar e postar os cortes.</p></details>
-    <details><summary>Qual PC eu preciso?</summary><p>Windows, processador de 4 núcleos, 8 GB de memória (16 GB recomendado) e internet. Placa de vídeo deixa mais rápido, mas não é obrigatória.</p></details>
-    <details><summary>Tenho que pagar mais alguma coisa?</summary><p>Não. As IAs que o programa usa têm plano grátis e o assistente mostra como pegar cada chave. Sem chave nenhuma ele também funciona, só mais devagar e sem a nota da IA.</p></details>
-    <details><summary>É mensalidade?</summary><p>Não. Você paga uma vez e usa para sempre, com as atualizações incluídas.</p></details>
-    <details><summary>Posso cortar live de qualquer streamer?</summary><p>O programa corta qualquer link, mas você é responsável por ter autorização para postar o conteúdo de outras pessoas. Muitos streamers liberam cortes com crédito — o HELLCUTLV já coloca o crédito na legenda.</p></details>
-    <details><summary>Posso usar em mais de um computador?</summary><p>A licença é pessoal, para 1 computador. Trocou de PC? Fale com o suporte.</p></details>
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>YOUTUBE</span><i>✦</i><span>TWITCH</span><i>✦</i><span>KICK</span><i>✦</i><span>TIKTOK</span><i>✦</i><span>SHORTS</span><i>✦</i><span>REELS</span><i>✦</i><span>AO VIVO</span><i>✦</i>
+      <span>YOUTUBE</span><i>✦</i><span>TWITCH</span><i>✦</i><span>KICK</span><i>✦</i><span>TIKTOK</span><i>✦</i><span>SHORTS</span><i>✦</i><span>REELS</span><i>✦</i><span>AO VIVO</span><i>✦</i>
+    </div>
+  </div>
+
+  <!-- ============================================================ COMO FUNCIONA (demo animada) -->
+  <section id="como" class="sec" data-mascote="Olha eu trabalhando: baixo, transcrevo, escolho, edito e o Editor-chefe confere antes de sair.">
+    <div class="sec-head reveal">
+      <p class="kicker">Do link ao corte</p>
+      <h2 class="big">Veja o robô <em>cortando</em></h2>
+      <p class="sub">É assim que cada corte nasce dentro do programa. Toque numa etapa para ver de perto.</p>
+    </div>
+
+    <div class="demo reveal" id="demo">
+      <ol class="demo-steps">
+        <li data-s="0"><b>01</b> Colar o link</li>
+        <li data-s="1"><b>02</b> Baixando</li>
+        <li data-s="2"><b>03</b> Transcrevendo</li>
+        <li data-s="3"><b>04</b> Escolhendo</li>
+        <li data-s="4"><b>05</b> Editando</li>
+        <li data-s="5"><b>06</b> Editor-chefe</li>
+        <li data-s="6"><b>07</b> Pronto</li>
+      </ol>
+
+      <div class="win">
+        <div class="win-bar"><i></i><i></i><i></i><span>HELLCUTLV · Novo corte</span>
+          <button class="demo-pause" type="button" aria-label="Pausar a demonstração">❚❚</button></div>
+        <div class="win-body">
+          <div class="scr" data-s="0">
+            <p class="scr-lbl">Link da live ou do vídeo</p>
+            <div class="inp"><span class="typing">youtube.com/live/exemplo-gta6</span><i class="caret"></i></div>
+            <div class="opts"><span>5 cortes</span><span>20–45 s</span><span>⚡ Automático</span><span>🎙️ Narração</span></div>
+            <div class="btn fake">Cortar agora</div>
+          </div>
+          <div class="scr" data-s="1">
+            <p class="scr-lbl">Baixando a live · 1080p</p>
+            <div class="big-pct"><span class="pct">0</span>%</div>
+            <div class="bar"><i class="fill"></i></div>
+            <p class="mono">só o áudio primeiro · os trechos em 1080p depois</p>
+          </div>
+          <div class="scr" data-s="2">
+            <p class="scr-lbl">Transcrevendo cada palavra</p>
+            <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <p class="words"><span>mano</span> <span>olha</span> <span>isso</span> <span>ele</span> <span>vai</span> <span>pular</span> <span>do</span> <span>prédio</span> <span class="hl">KKKKK</span> <span>não</span> <span>acredito</span></p>
+          </div>
+          <div class="scr" data-s="3">
+            <p class="scr-lbl">Achando os picos: chat, grito, risada</p>
+            <div class="timeline">
+              <div class="peaks"><i style="--h:18%"></i><i style="--h:30%"></i><i style="--h:22%"></i><i style="--h:64%"></i><i style="--h:90%" class="hot"></i><i style="--h:40%"></i><i style="--h:26%"></i><i style="--h:35%"></i><i style="--h:72%" class="hot"></i><i style="--h:28%"></i><i style="--h:20%"></i><i style="--h:55%"></i><i style="--h:84%" class="hot"></i><i style="--h:30%"></i></div>
+              <span class="pick" style="--x:32%">🎯 91</span><span class="pick" style="--x:61%">🎯 83</span><span class="pick" style="--x:89%">🎯 77</span>
+            </div>
+            <p class="mono">gancho 24 · fluxo 22 · valor 23 · tendência 22</p>
+          </div>
+          <div class="scr" data-s="4">
+            <div class="edit">
+              <div class="mini9x16">
+                <div class="clip-scene zoomy"><div class="sun"></div><div class="city"></div></div>
+                <div class="flash"></div>
+                <div class="cap2"><span>NÃO</span> <b class="y">ACREDITO</b></div>
+              </div>
+              <ul class="tracks">
+                <li><b>Vídeo</b><span class="tk cuts"><i></i><i></i><i></i><i></i><i></i></span></li>
+                <li><b>Legenda</b><span class="tk caps"><i></i><i></i><i></i><i></i></span></li>
+                <li><b>Zoom</b><span class="tk zoom"><i></i><i></i></span></li>
+                <li><b>Efeitos</b><span class="tk sfx"><i></i><i></i><i></i></span></li>
+                <li><b>Trilha</b><span class="tk mus"><i></i></span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="scr" data-s="5">
+            <p class="scr-lbl">🎬 Editor-chefe AI conferindo</p>
+            <ul class="check">
+              <li><span>Gancho nos 3 primeiros segundos</span><b>9/10</b></li>
+              <li><span>Ritmo (sem tela parada)</span><b>8/10</b></li>
+              <li><span>Final no clímax</span><b>9/10</b></li>
+              <li><span>Volume -14 LUFS</span><b>✓</b></li>
+            </ul>
+            <div class="verdict">🔥 Chance de viralizar <b>78%</b> · liberado</div>
+          </div>
+          <div class="scr" data-s="6">
+            <p class="scr-lbl">3 cortes prontos · agendados</p>
+            <div class="ready">
+              <div class="rc"><div class="clip-scene"><div class="sun"></div><div class="city"></div></div><b>91</b></div>
+              <div class="rc"><div class="clip-scene alt"><div class="sun"></div><div class="city"></div></div><b>83</b></div>
+              <div class="rc"><div class="clip-scene alt2"><div class="sun"></div><div class="city"></div></div><b>77</b></div>
+            </div>
+            <div class="nets"><span class="yt">YouTube 18:00</span><span class="ig">Instagram 18:01</span><span class="tt">TikTok 📱</span></div>
+          </div>
+        </div>
+        <div class="win-timer"><i></i></div>
+      </div>
+    </div>
   </section>
 
-  <section id="youtube">
+  <!-- ============================================================ POR DENTRO (galeria horizontal) -->
+  <section id="por-dentro" class="sec" data-mascote="Essas são telas de verdade do programa. Os nomes e vídeos são de exemplo, tá?">
+    <div class="sec-head reveal">
+      <p class="kicker">Telas de verdade</p>
+      <h2 class="big">O HELLCUTLV <em>por dentro</em></h2>
+      <p class="sub">Arraste para o lado. Nomes, canais e vídeos trocados por exemplos.</p>
+    </div>
+    <div class="hscroll" id="hscroll">
+      <div class="htrack">
+        <figure class="shot"><img src="img/previa/ao-vivo.jpg" width="1530" height="763" loading="lazy" alt="Tela Ao vivo: prévia da live e o Editor-chefe com as etapas"><figcaption><b>📡 Ao vivo</b>Corta a live enquanto ela acontece.</figcaption></figure>
+        <figure class="shot"><img src="img/previa/editor-ai.jpg" width="767" height="728" loading="lazy" alt="Editor AI revisando um corte"><figcaption><b>🧠 Editor AI</b>Revisa como um editor e aprende com você.</figcaption></figure>
+        <figure class="shot"><img src="img/previa/cacador.jpg" width="1530" height="732" loading="lazy" alt="Caçador de virais"><figcaption><b>🛰️ Caçador</b>Procura o que está bombando no seu nicho.</figcaption></figure>
+        <figure class="shot"><img src="img/previa/formatos.jpg" width="1544" height="924" loading="lazy" alt="Formatos: Top 5, moldura de post e compilação"><figcaption><b>🔥 Formatos virais</b>Top 5, moldura de post e compilação.</figcaption></figure>
+        <figure class="shot"><img src="img/previa/analisador.jpg" width="1530" height="594" loading="lazy" alt="Analisador de virais"><figcaption><b>🧪 Analisador</b>Copia o ritmo de quem viraliza.</figcaption></figure>
+        <figure class="shot"><img src="img/previa/calendario.jpg" width="1461" height="984" loading="lazy" alt="Calendário de postagens"><figcaption><b>📅 Calendário</b>Arraste para mudar o dia e a hora.</figcaption></figure>
+        <figure class="shot"><img src="img/previa/inicio.jpg" width="1590" height="1314" loading="lazy" alt="Tela Início"><figcaption><b>🏠 Início</b>Tudo que está rodando num lugar só.</figcaption></figure>
+        <figure class="shot"><img src="img/previa/ajuda.jpg" width="1530" height="1078" loading="lazy" alt="Ajuda com passo a passo"><figcaption><b>🧭 Ajuda</b>Passo a passo de cada ferramenta.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ FUNÇÕES (de lista.py) -->
+  <section id="funcoes" class="sec" data-mascote="São 53 funções! As com 🆕 chegaram nesta versão. Toca nos grupos pra ver tudo.">
+    <div class="sec-head reveal">
+      <p class="kicker">Tudo que vem dentro</p>
+      <h2 class="big"><span data-total>53</span> funções. <em>Um robô só.</em></h2>
+      <p class="sub">A lista completa da versão <span data-versao>1.0.8</span>. As marcadas com ⭐ fazem parte de uma assinatura.</p>
+    </div>
+    <div class="ftabs reveal" id="ftabs"></div>
+    <div class="fgrid" id="fgrid"></div>
+  </section>
+
+  <!-- ============================================================ PLANOS -->
+  <section id="planos" class="sec" data-mascote="Escolhe o seu! Todo plano tem 7 dias de garantia: não curtiu, pede o reembolso.">
+    <div class="sec-head reveal center">
+      <p class="kicker">Planos</p>
+      <h2 class="big">Escolha <em>como cortar</em></h2>
+      <p class="sub">Vitalício para usar no seu PC para sempre. Assinatura para quem quer mais contas ou cortar pelo celular.</p>
+    </div>
+
+    <div class="plans">
+      <article class="plan" data-tilt>
+        <p class="pl-tag">Para começar</p>
+        <h3>Vitalício</h3>
+        <div class="pl-price"><b>R$ 47</b><span>pagamento único</span></div>
+        <p class="pl-desc">O programa no seu computador Windows, para sempre, com as atualizações de toda semana.</p>
+        <ul>
+          <li>Programa para Windows com instalador</li>
+          <li>Chave vitalícia: chega no e-mail na hora</li>
+          <li>1 conta por rede (YouTube, Instagram, TikTok)</li>
+          <li>Cortes sem limite: roda no seu PC</li>
+          <li>Atualização em 1 clique, toda sexta</li>
+          <li>Sons e trilhas livres de direitos</li>
+          <li>Área de membros + grupo no WhatsApp</li>
+        </ul>
+        <a class="btn block" data-buy="vitalicio" href="#planos">Comprar o vitalício</a>
+      </article>
+
+      <article class="plan hot" data-tilt>
+        <span class="ribbon">Mais contas</span>
+        <p class="pl-tag">Para quem tem vários canais</p>
+        <h3>HELLCUTLV Pro</h3>
+        <div class="pl-price"><b>R$ 29,90</b><span>por mês</span></div>
+        <p class="pl-desc">Tudo do programa no seu PC, com <b>2 contas por rede</b> para postar os cortes em mais canais.</p>
+        <ul>
+          <li>Tudo do Vitalício</li>
+          <li><b>2 contas por rede</b> no programa</li>
+          <li>Título e legenda diferentes em cada conta</li>
+          <li>Abertura diferente do vídeo em cada conta</li>
+          <li>Já tem o vitalício? A sua chave ganha o Pro</li>
+          <li>Cancela quando quiser</li>
+        </ul>
+        <a class="btn block" data-buy="pro" href="#planos">Assinar o Pro</a>
+      </article>
+
+      <article class="plan" data-tilt>
+        <span class="ribbon alt">Sem PC</span>
+        <p class="pl-tag">Para quem não tem computador</p>
+        <h3>Pelo celular</h3>
+        <div class="pl-price"><b>R$ 29,90</b><span>por mês</span></div>
+        <p class="pl-desc">Use o HELLCUTLV pelo navegador ou pelo app do celular. O corte é feito no nosso servidor, não no seu aparelho.</p>
+        <ul>
+          <li>Login próprio, no celular ou em qualquer navegador</li>
+          <li>App para Android (instala pelo Chrome)</li>
+          <li><b>3.000 créditos por mês</b> para narração, capa com IA e mais</li>
+          <li>Cortar, revisar, agendar e postar</li>
+          <li>Renova todo mês, cancela quando quiser</li>
+        </ul>
+        <a class="btn block" data-buy="celular" href="#planos">Assinar pelo celular</a>
+      </article>
+    </div>
+
+    <div class="guarantee reveal">
+      <div class="seal"><b>7</b><span>dias</span></div>
+      <p><b>Garantia de 7 dias em todos os planos.</b> Não gostou? Pede o reembolso pela loja e pronto — a chave ou o acesso é
+        desligado e o dinheiro volta. Pagamento seguro pela loja, no Pix ou no cartão.</p>
+    </div>
+
+    <div class="tablewrap reveal">
+      <table class="cmp">
+        <thead><tr><th></th><th>Vitalício</th><th class="h">Pro</th><th>Pelo celular</th></tr></thead>
+        <tbody>
+          <tr><td>Onde roda</td><td>Seu PC Windows</td><td class="h">Seu PC Windows</td><td>Navegador e celular</td></tr>
+          <tr><td>Pagamento</td><td>R$ 47 uma vez</td><td class="h">R$ 29,90/mês</td><td>R$ 29,90/mês</td></tr>
+          <tr><td>Contas por rede</td><td>1</td><td class="h">2</td><td>Conforme o plano</td></tr>
+          <tr><td>Cortes</td><td>Sem limite</td><td class="h">Sem limite</td><td>Pelos créditos do mês</td></tr>
+          <tr><td>Narração e capa com IA</td><td>Com as suas chaves</td><td class="h">Com as suas chaves</td><td>3.000 créditos/mês</td></tr>
+          <tr><td>Atualizações</td><td>Incluídas</td><td class="h">Incluídas</td><td>Sempre a última</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================================================ DÚVIDAS -->
+  <section id="duvidas" class="sec narrow" data-mascote="Ficou alguma dúvida? Aqui tem as mais comuns. No grupo do WhatsApp a gente responde o resto.">
+    <div class="sec-head reveal">
+      <p class="kicker">Dúvidas</p>
+      <h2 class="big">Perguntas <em>comuns</em></h2>
+    </div>
+    <details class="reveal"><summary>Funciona em Mac ou no celular?</summary><p>O programa é para Windows (10 ou 11). Sem PC? A assinatura <b>pelo celular</b> funciona no navegador e no app do Android — o corte é feito no nosso servidor.</p></details>
+    <details class="reveal"><summary>Qual PC eu preciso para o programa?</summary><p>Windows, processador de 4 núcleos, 8 GB de memória (16 GB recomendado) e internet. Placa de vídeo deixa mais rápido, mas não é obrigatória.</p></details>
+    <details class="reveal"><summary>Tenho que pagar mais alguma coisa?</summary><p>No Vitalício e no Pro, não. As IAs que o programa usa têm plano grátis e o assistente mostra como pegar cada chave. Sem chave nenhuma ele também funciona, só mais devagar e sem a nota da IA. No plano pelo celular, os créditos do mês já cobrem narração e capa com IA.</p></details>
+    <details class="reveal"><summary>O que são os créditos do plano pelo celular?</summary><p>São o saldo para as funções que gastam IA paga: narração com voz, capa com IA de imagem, dublagem e analisador de virais. Você recebe 3.000 por mês e o saldo renova todo mês.</p></details>
+    <details class="reveal"><summary>Já comprei o vitalício. Como fica o Pro?</summary><p>Assine com o mesmo e-mail: a sua chave ganha as 2 contas por rede enquanto a assinatura estiver ativa. Se cancelar, ela volta ao vitalício normal — nada se perde.</p></details>
+    <details class="reveal"><summary>Posso cancelar a assinatura?</summary><p>Pode, quando quiser, pela loja. O acesso continua até o fim do mês que você já pagou.</p></details>
+    <details class="reveal"><summary>Posso cortar live de qualquer streamer?</summary><p>O programa corta qualquer link, mas você é responsável por ter autorização para postar o conteúdo de outras pessoas. Muitos streamers liberam cortes com crédito — o HELLCUTLV já coloca o crédito na legenda.</p></details>
+    <details class="reveal"><summary>O HELLCUTLV garante views ou dinheiro?</summary><p>Não. Ele faz os cortes, a edição e a postagem por você; o resultado depende do conteúdo, do nicho e das regras de cada rede.</p></details>
+    <details class="reveal"><summary>Posso usar em mais de um computador?</summary><p>A chave é pessoal, para 1 computador. Trocou de PC? Fale com o suporte.</p></details>
+  </section>
+
+  <!-- ============================================================ COMUNIDADE -->
+  <section class="sec" data-mascote="Entra no grupo! Tem novidade toda semana e gente que já usa pra tirar dúvida.">
+    <div class="community reveal">
+      <div>
+        <p class="kicker green">Comunidade</p>
+        <h2 class="big sm">Entra no <em>grupo do WhatsApp</em></h2>
+        <p>Novidades do HELLCUTLV, dicas de cortes e tira-dúvidas com quem já usa. Grátis, pode entrar antes de comprar.</p>
+      </div>
+      <a class="btn wa" href="https://chat.whatsapp.com/LjI08qROCutLAUC9nCFdsI" target="_blank" rel="noopener">Entrar no grupo</a>
+    </div>
+  </section>
+
+  <section id="youtube" class="sec narrow">
     <div class="note">
       <h3>Uso da conta do YouTube</h3>
       <p>O HELLCUTLV roda no computador do próprio usuário. Quando o usuário clica em “Conectar YouTube”, ele autoriza o
@@ -312,26 +334,39 @@
         mostrar os resultados dele. Detalhes na <a href="privacidade.html">Política de Privacidade</a>.</p>
     </div>
   </section>
+</main>
 
-  <footer>
-    <img src="img/icone.png" alt="" width="28" height="28" style="vertical-align:middle;border-radius:8px;margin-right:8px">
-    HELLCUTLV · <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Uso</a>
-  </footer>
+<footer class="foot">
+  <div class="foot-big" aria-hidden="true">HELLCUTLV</div>
+  <p><img src="img/icone.png" alt="" width="24" height="24"> HELLCUTLV ·
+    <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Uso</a> ·
+    <a href="chave.html">Recuperar minha chave</a></p>
+</footer>
+
+<!-- mascote que acompanha a página: pula e comenta cada seção -->
+<div class="mascote" id="mascote">
+  <div class="balao" id="balao" aria-live="polite">Oi! Cola o link da live que eu corto pra você ✂️</div>
+  <button class="robo-btn" id="roboBtn" type="button" aria-label="Mostrar ou esconder o balão do mascote">
+    <svg viewBox="140 90 744 720"><use href="#robo"/></svg>
+  </button>
 </div>
+
 <a class="wa-float" href="https://chat.whatsapp.com/LjI08qROCutLAUC9nCFdsI" target="_blank" rel="noopener" aria-label="Entrar no grupo do WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2.1.7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
-  <span>Grupo no WhatsApp</span>
 </a>
+
+<script src="assets/funcoes.js"></script>
 <script>
-  // Vendas abertas? Enquanto for false, o botão de compra mostra "Em breve" e não leva ao checkout.
-  const VENDAS_ABERTAS = true;
-  if (!VENDAS_ABERTAS) {
-    const b = document.getElementById("buy");
-    b.textContent = "Em breve";
-    b.classList.add("off");
-    b.removeAttribute("href");
-    document.getElementById("soon").hidden = false;
-  }
+  // Links de compra: trocar a loja = mudar só aqui.
+  window.HC_CHECKOUT = {
+    vitalicio: "https://pay.kiwify.com.br/PAgYqNR",   // Cakto: https://pay.cakto.com.br/djsu5zb
+    pro:       "https://pay.cakto.com.br/5xw5u97",    // Kiwify: https://pay.kiwify.com.br/KJzEVzv
+    celular:   "https://pay.cakto.com.br/3bvpfcs"     // Kiwify: https://pay.kiwify.com.br/4ZFFv20
+  };
 </script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>
