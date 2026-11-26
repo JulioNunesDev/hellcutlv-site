@@ -46,6 +46,12 @@ window.HC_FUNCOES = {
      "e": "🧩",
      "n": "Série automática (Parte 1, Parte 2)",
      "t": "Cortes seguidos do mesmo assunto viram série, com \"Parte 2 no perfil\" no fim, e saem na ordem."
+    },
+    {
+     "e": "🕛",
+     "n": "Live de 12 horas sem travar",
+     "t": "Em live ou vídeo de mais de 40 minutos ele baixa só o áudio, acha os momentos e depois baixa em 1080p só o trecho de cada corte. Aceita até 12 horas de live.",
+     "novo": "novo"
     }
    ]
   },
@@ -120,6 +126,30 @@ window.HC_FUNCOES = {
      "e": "🧬",
      "n": "Nunca repete o mesmo modelo",
      "t": "Varia abertura, visual da legenda, cor e transição em cada corte, para não parecer conteúdo repetido."
+    },
+    {
+     "e": "🎯",
+     "n": "Formatos que viralizam",
+     "t": "Título fixo no topo o vídeo inteiro, seta vermelha no 1º segundo apontando o que importa, carimbos tipo \"IMPOSSÍVEL\" e \"BUGOU\" na hora certa e micro-corte de 8 a 15 segundos.",
+     "novo": "novo"
+    },
+    {
+     "e": "🏆",
+     "n": "Top 5 da live",
+     "t": "Junta os 5 melhores momentos da live numa contagem regressiva (#5 → #1) com número gigante e título fixo.",
+     "novo": "novo"
+    },
+    {
+     "e": "📰",
+     "n": "Moldura de post",
+     "t": "O corte sai dentro de uma moldura de post (foto, nome, selo e o texto da piada em cima), o formato dos perfis de meme.",
+     "novo": "novo"
+    },
+    {
+     "e": "🎙️",
+     "n": "Compilação \"os streamers responderam\"",
+     "t": "Junta 2 a 5 cortes de streamers diferentes respondendo à mesma pergunta, com o nome de cada um e \"COMENTA AÍ!\" no fim.",
+     "novo": "novo"
     }
    ]
   },
@@ -145,6 +175,12 @@ window.HC_FUNCOES = {
      "e": "⏱️",
      "n": "Versão longa para o TikTok",
      "t": "Gera uma versão com mais de 1 minuto do mesmo corte, para o TikTok."
+    },
+    {
+     "e": "🧠",
+     "n": "Editor AI que aprende com você",
+     "t": "O Editor AI assiste o corte como um editor de verdade: dá nota ao gancho, ao ritmo e ao final, acha menu do jogo e tela parada, diz o que um editor consertaria e a chance (%) de viralizar. Você recusa com o motivo e ele aprende o SEU gosto.",
+     "novo": "novo"
     }
    ]
   },
@@ -258,63 +294,7 @@ window.HC_FUNCOES = {
      "e": "⏸️",
      "n": "Pausar, continuar e limpar o disco",
      "t": "Pausa um corte pesado e continua depois. Limpa os vídeos antigos sozinho para não encher o HD."
-    }
-   ]
-  },
-  {
-   "nome": "Acha os melhores momentos",
-   "itens": [
-    {
-     "e": "🕛",
-     "n": "Live de 12 horas sem travar",
-     "t": "Em live ou vídeo de mais de 40 minutos ele baixa só o áudio, acha os momentos e depois baixa em 1080p só o trecho de cada corte. Aceita até 12 horas de live.",
-     "novo": "novo"
-    }
-   ]
-  },
-  {
-   "nome": "Edição de editor profissional",
-   "itens": [
-    {
-     "e": "🎯",
-     "n": "Formatos que viralizam",
-     "t": "Título fixo no topo o vídeo inteiro, seta vermelha no 1º segundo apontando o que importa, carimbos tipo \"IMPOSSÍVEL\" e \"BUGOU\" na hora certa e micro-corte de 8 a 15 segundos.",
-     "novo": "novo"
     },
-    {
-     "e": "🏆",
-     "n": "Top 5 da live",
-     "t": "Junta os 5 melhores momentos da live numa contagem regressiva (#5 → #1) com número gigante e título fixo.",
-     "novo": "novo"
-    },
-    {
-     "e": "📰",
-     "n": "Moldura de post",
-     "t": "O corte sai dentro de uma moldura de post (foto, nome, selo e o texto da piada em cima), o formato dos perfis de meme.",
-     "novo": "novo"
-    },
-    {
-     "e": "🎙️",
-     "n": "Compilação \"os streamers responderam\"",
-     "t": "Junta 2 a 5 cortes de streamers diferentes respondendo à mesma pergunta, com o nome de cada um e \"COMENTA AÍ!\" no fim.",
-     "novo": "novo"
-    }
-   ]
-  },
-  {
-   "nome": "Ajustar do seu jeito",
-   "itens": [
-    {
-     "e": "🧠",
-     "n": "Editor AI que aprende com você",
-     "t": "O Editor AI assiste o corte como um editor de verdade: dá nota ao gancho, ao ritmo e ao final, acha menu do jogo e tela parada, diz o que um editor consertaria e a chance (%) de viralizar. Você recusa com o motivo e ele aprende o SEU gosto.",
-     "novo": "novo"
-    }
-   ]
-  },
-  {
-   "nome": "O programa",
-   "itens": [
     {
      "e": "📲",
      "n": "App no celular",

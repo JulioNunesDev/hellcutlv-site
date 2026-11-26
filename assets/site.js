@@ -121,6 +121,47 @@
     });
   }
 
+  // ---------------------------------------------------------- linhas que deslizam: arrastar com o mouse e sombra na borda
+  $$(".ftabs, .demo-steps, .hscroll").forEach((el) => {
+    el.classList.add("drag");
+    const slides = () => getComputedStyle(el).overflowX !== "visible" && el.scrollWidth > el.clientWidth + 4;
+    const edges = () => {
+      const on = slides(), max = el.scrollWidth - el.clientWidth;
+      el.classList.toggle("more-l", on && el.scrollLeft > 4);
+      el.classList.toggle("more-r", on && el.scrollLeft < max - 4);
+    };
+    el.addEventListener("scroll", edges, { passive: true });
+    new ResizeObserver(edges).observe(el);
+    edges();
+    let down = false, moved = false, x0 = 0, s0 = 0;
+    el.addEventListener("pointerdown", (e) => {
+      if (e.pointerType !== "mouse" || e.button !== 0 || !slides()) return;
+      down = true; moved = false; x0 = e.clientX; s0 = el.scrollLeft;
+    });
+    addEventListener("pointermove", (e) => {
+      if (!down) return;
+      const dx = e.clientX - x0;
+      if (!moved && Math.abs(dx) > 5) { moved = true; el.classList.add("dragging"); }
+      if (moved) el.scrollLeft = s0 - dx;
+    });
+    addEventListener("pointerup", () => { if (!down) return; down = false; setTimeout(() => { el.classList.remove("dragging"); moved = false; }, 0); });
+    // soltar depois de arrastar não vale como clique
+    el.addEventListener("click", (e) => { if (el.classList.contains("dragging")) { e.stopPropagation(); e.preventDefault(); } }, true);
+    // rodinha do mouse em cima da linha também anda para o lado (até chegar no fim)
+    el.addEventListener("wheel", (e) => {
+      if (!slides() || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      const max = el.scrollWidth - el.clientWidth;
+      if ((e.deltaY < 0 && el.scrollLeft <= 0) || (e.deltaY > 0 && el.scrollLeft >= max - 1)) return;
+      e.preventDefault(); e.stopPropagation(); el.scrollLeft += e.deltaY;
+    }, { passive: false });
+  });
+  // a aba escolhida vai para o meio da linha (no celular aparece a seguinte)
+  const ft = $("#ftabs");
+  if (ft) ft.addEventListener("click", (e) => {
+    const b = e.target.closest(".ftab");
+    if (b && getComputedStyle(ft).overflowX !== "visible") ft.scrollTo({ left: b.offsetLeft - (ft.clientWidth - b.offsetWidth) / 2, behavior: reduce ? "auto" : "smooth" });
+  });
+
   // ---------------------------------------------------------- aparecer ao rolar (sem GSAP também funciona)
   const rv = new IntersectionObserver((ents) => ents.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("seen"); rv.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
   $$(".reveal").forEach((el) => rv.observe(el));
