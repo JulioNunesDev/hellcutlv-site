@@ -81,6 +81,19 @@
   .tag { font-size: .68rem; font-weight: 800; letter-spacing: .8px; padding: 3px 8px; border-radius: 999px; text-transform: uppercase;
     background: rgba(255,122,45,.14); color: var(--hell-2); border: 1px solid rgba(255,122,45,.35); }
   .tag.new { background: rgba(43,214,123,.12); color: var(--ok); border-color: rgba(43,214,123,.35); }
+  /* "Veja por dentro": cartões com a tela de verdade do programa numa moldura com o degradê da marca */
+  .previews { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .pv { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 14px; display: grid; gap: 14px; }
+  .pv.wide { grid-column: 1 / -1; }
+  .pv-frame { border-radius: 18px; padding: 18px; overflow: hidden;
+    background: radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,.18), transparent 55%), linear-gradient(135deg, var(--hell), var(--hell-2)); }
+  .pv-frame img { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 18px 50px rgba(0,0,0,.45);
+    border: 1px solid rgba(0,0,0,.35); }
+  .pv-text { display: grid; grid-template-columns: 44px 1fr; gap: 4px 14px; align-items: center; padding: 0 6px 6px; }
+  .pv-text i { grid-row: span 2; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--grad);
+    font-style: normal; font-size: 1.3rem; }
+  .pv-text b { font-size: 1.1rem; }
+  .pv-text p { margin: 0; color: var(--muted); font-size: .95rem; }
   /* WhatsApp: botão do grupo */
   .btn.wa { background: #25d366; box-shadow: 0 10px 30px rgba(37,211,102,.25); color: #06200f; }
   .btn.wa:hover { box-shadow: 0 14px 36px rgba(37,211,102,.4); }
@@ -93,7 +106,8 @@
   .top-actions { display: flex; gap: 10px; align-items: center; }
   @media (max-width: 820px) {
     .hero, .offer { grid-template-columns: 1fr; }
-    .steps, .grid, .groups, .community { grid-template-columns: 1fr; }
+    .steps, .grid, .groups, .community, .previews { grid-template-columns: 1fr; }
+    .pv-frame { padding: 10px; }
     .top-actions .wa-top { display: none; }
     .wa-float span { display: none; }
     .wa-float { padding: 14px; }
@@ -135,6 +149,39 @@
       <div class="step"><span>1</span><b>Cole o link</b><p>De uma live (até ao vivo, enquanto acontece) ou de um vídeo longo.</p></div>
       <div class="step"><span>2</span><b>O robô trabalha</b><p>Baixa, transcreve, acha os picos (grito, risada, chat explodindo) e edita cada corte.</p></div>
       <div class="step"><span>3</span><b>Revise e poste</b><p>Cortes 9:16 com título, legenda e hashtags. Posta sozinho no YouTube; TikTok e Instagram em 2 cliques.</p></div>
+    </div>
+  </section>
+
+  <section id="por-dentro">
+    <p class="kicker">Veja na prática</p>
+    <h2>O HELLCUTLV <em>por dentro</em></h2>
+    <p class="sub">Telas de verdade do programa (com exemplos no lugar dos vídeos e nomes): é isso que você vai usar.</p>
+    <div class="previews">
+      <article class="pv wide">
+        <div class="pv-frame"><img src="img/previa/ao-vivo.jpg" width="1530" height="763" alt="Tela Ao vivo: prévia da live e o Editor-chefe AI com as etapas" loading="lazy"></div>
+        <div class="pv-text"><i>📡</i><b>Corta a live enquanto ela acontece</b>
+          <p>Prévia da live no ar e o Editor-chefe AI mostrando cada etapa: baixa, transcreve, escolhe, edita, confere e solta o corte pronto para postar.</p></div>
+      </article>
+      <article class="pv">
+        <div class="pv-frame"><img src="img/previa/editor-ai.jpg" width="767" height="728" alt="Editor AI revisando um corte com notas e sugestões" loading="lazy"></div>
+        <div class="pv-text"><i>🧠</i><b>Editor AI que revisa como um profissional</b>
+          <p>Nota do gancho, ritmo e final, chance de viralizar e o que um editor faria para o corte render mais.</p></div>
+      </article>
+      <article class="pv">
+        <div class="pv-frame"><img src="img/previa/inicio.jpg" width="1590" height="1314" alt="Tela Início com o que está rodando e os atalhos" loading="lazy"></div>
+        <div class="pv-text"><i>🏠</i><b>Tudo num lugar só</b>
+          <p>O que está rodando agora, o que espera a sua aprovação e atalhos para cada parte do programa.</p></div>
+      </article>
+      <article class="pv">
+        <div class="pv-frame"><img src="img/previa/calendario.jpg" width="1461" height="984" alt="Calendário de postagens da semana" loading="lazy"></div>
+        <div class="pv-text"><i>📅</i><b>Agenda e posta sozinho</b>
+          <p>Calendário com tudo que vai sair no YouTube, Instagram e TikTok. Arraste para mudar o dia e a hora.</p></div>
+      </article>
+      <article class="pv">
+        <div class="pv-frame"><img src="img/previa/ajuda.jpg" width="1530" height="1078" alt="Página de Ajuda com o passo a passo de cada ferramenta" loading="lazy"></div>
+        <div class="pv-text"><i>🧭</i><b>Passo a passo dentro do programa</b>
+          <p>Cada ferramenta com o que faz, onde fica e como usar — sem precisar procurar vídeo.</p></div>
+      </article>
     </div>
   </section>
 
