@@ -38,17 +38,29 @@
   <p class="small">Nunca pedimos senha nem dados de cartão. Dúvidas: responda o e-mail da compra.</p>
 </main>
 <script>
-  // O pedido vai para o servidor do HELLCUTLV (que guarda as chaves). Só devolve a chave com e-mail + pedido certos.
-  const API = "https://desktop-utfsmvk.tail7fdc34.ts.net/api/public/minha-chave";
+  // O pedido vai para o balcão do HELLCUTLV na nuvem (que guarda as chaves); se ele não responder, para o servidor
+  // reserva. Só devolve a chave com e-mail + pedido certos.
+  const APIS = ["https://hellcutlv-balcao.julionunesdev.workers.dev/public/minha-chave",
+                "https://desktop-utfsmvk.tail7fdc34.ts.net/api/public/minha-chave"];
+  async function ask(body) {
+    let last;
+    for (const url of APIS) {
+      try {
+        const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body });
+        if (r.status >= 500) { last = new Error("Failed to fetch"); continue; }   // servidor com problema: tenta o outro
+        return r;
+      } catch (e) { last = e; }
+    }
+    throw last;
+  }
   const f = document.getElementById("form"), msg = document.getElementById("msg"),
         box = document.getElementById("chave"), btn = document.getElementById("btn");
   f.addEventListener("submit", async (e) => {
     e.preventDefault();
     btn.disabled = true; msg.textContent = "Procurando…"; msg.className = ""; box.style.display = "none";
     try {
-      const r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: document.getElementById("email").value.trim(),
-                               pedido: document.getElementById("pedido").value.trim() }) });
+      const r = await ask(JSON.stringify({ email: document.getElementById("email").value.trim(),
+                                           pedido: document.getElementById("pedido").value.trim() }));
       const d = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(d.detail || "Não deu certo agora. Tente de novo em alguns minutos.");
       msg.textContent = "Oi, " + d.nome.split(" ")[0] + "! Esta é a sua chave (copie e cole no programa):";
