@@ -376,3 +376,18 @@ details p { color: var(--muted); margin: 10px 0 0; }
   .typing { max-width: 100%; }
   .track { animation: none; }
 }
+
+/* planos do site (27/11/2026): Básico · Pro · Escala */
+.pl-cuts { margin: -4px 0 10px; color: #ffb38a; font-weight: 700; font-size: .95rem; }
+.pl-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.pl-badge { font-size: .74rem; padding: 4px 9px; border-radius: 999px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); color: #e6e6e6; }
+.pl-badge.hot { background: rgba(255,90,40,.16); border-color: rgba(255,110,60,.45); color: #ffc7a8; }
+.pl-badge.off { color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(255,255,255,.35); }
+.pl-trust { margin: 10px 0 0; text-align: center; color: var(--muted); font-size: .74rem; }
+.voice-note { max-width: 760px; margin: 26px auto 0; padding: 14px 18px; border-radius: 16px; text-align: center; color: #e8e8e8;
+  background: linear-gradient(170deg, #1d1210, #101010) padding-box, var(--grad) border-box; border: 1.5px solid transparent; }
+.recargas { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin: 18px auto 0; text-align: center; }
+.recargas p { width: 100%; margin: 0 0 4px; color: #cfcfcf; }
+.pc-head { margin-top: 56px; }
+@media (min-width: 900px) { .plans.pc { grid-template-columns: repeat(2, 1fr); max-width: 820px; margin: 0 auto; } }
+.pl-price b { white-space: nowrap; font-size: clamp(2.3rem, 3.6vw, 3.4rem); }
